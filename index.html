@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday My Vicky 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #CDB4DB, #FFC8DD, #FFAFCC, #BDE0FE, #A2D2FF);
+}
+
+.section {
+    display: none;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+.active {
+    display: flex;
+}
+
+button {
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    cursor: pointer;
+}
+
+img {
+    width: 250px;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="section active" id="step1">
+    <h1>Happy Birthday My Vicky ❤️</h1>
+    <h2>My dear husband 😘🎂</h2>
+    <p>From your Neernaai 🦭</p>
+    <button id="startBtn">Click Me 💌</button>
+</div>
+
+<div class="section" id="step2">
+    <h2>I love you so much babe! 💖</h2>
+    <button class="nextBtn">Next</button>
+</div>
+
+<div class="section" id="step3">
+    <p id="typing"></p>
+    <button class="nextBtn">Next</button>
+</div>
+
+<div class="section" id="step4">
+    <h2>Our Memory 📸</h2>
+    <img src="images/photo.jpg">
+    <button class="nextBtn">Next</button>
+</div>
+
+<div class="section" id="step5">
+    <h2>
+        I love you so much always and forever 💖<br>
+        Happy Birthday my babe!<br>
+        En chellakutty! My vicky Mama! 😘
+    </h2>
+    <p>Happy Birthday my babe! My everything! My hubby! I love you! 💕</p>
+    <p>By your wife - Priya ❤️</p>
+</div>
+
+<script>
+const message = `The life that i love is just only for you! 
+you make me live happily, you deserve every happiness in this entire world. 
+All the blessings showers on you with abundance of success, positivity, health and peace. 
+everything falls into the right place at the right time for you with so much beautiful happenings and sunshine. 
+you are my saviour! My Man! My Everything. 
+You truly deserve this world and achieve greater heights everyday. 
+I'm always with you and forever ❤️😘`;
+
+let i = 0;
+
+function typeWriter() {
+    if (i < message.length) {
+        document.getElementById("typing").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 30);
+    }
+}
+
+function showStep(step) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.getElementById("step" + step).classList.add("active");
+
+    if (step === 3) typeWriter();
+}
+
+document.getElementById("startBtn").addEventListener("click", function () {
+    document.getElementById("music").play().catch(() => {});
+    showStep(2);
+});
+
+document.querySelectorAll(".nextBtn").forEach((btn, index) => {
+    btn.addEventListener("click", function () {
+        showStep(index + 3);
+    });
+});
+</script>
+
+</body>
+</html>
